@@ -5,7 +5,11 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import viewsets, permissions
 from .models import Category, Product, Orders
-from .serializers import CategorySerializer, ProductSerializer, OrdersSerializer
+from .serializers import CategorySerializer, ProductSerializer, OrdersSerializer, CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class CustomLoginView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 @api_view(['POST'])
 def register(request):
